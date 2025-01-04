@@ -1,0 +1,46 @@
+***************
+*** 42,57 ****
+          _Regs()->CR &= ~(DAC_CR_EN1 << (_Channel * ChannelOffset));
+      }
+  
+      DAC_TEMPLATE_ARGS
+      void DAC_TEMPLATE_QUALIFIER::EnableBuffer()
+      {
+-         _Regs()->CR &= ~(DAC_CR_BOFF1 << (_Channel * ChannelOffset));
+      }
+  
+      DAC_TEMPLATE_ARGS
+      void DAC_TEMPLATE_QUALIFIER::DisableBuffer()
+      {
+-         _Regs()->CR |= (DAC_CR_BOFF1 << (_Channel * ChannelOffset));
+      }
+  
+      DAC_TEMPLATE_ARGS
+--- 42,68 ----
+          _Regs()->CR &= ~(DAC_CR_EN1 << (_Channel * ChannelOffset));
+      }
+  
++     // DAC_TEMPLATE_ARGS
++     // void DAC_TEMPLATE_QUALIFIER::EnableBuffer()
++     // {
++     //     _Regs()->CR &= ~(DAC_CR_BOFF1 << (_Channel * ChannelOffset));
++     // }
++ 
++     // DAC_TEMPLATE_ARGS
++     // void DAC_TEMPLATE_QUALIFIER::DisableBuffer()
++     // {
++     //     _Regs()->CR |= (DAC_CR_BOFF1 << (_Channel * ChannelOffset));
++     // }
+      DAC_TEMPLATE_ARGS
+      void DAC_TEMPLATE_QUALIFIER::EnableBuffer()
+      {
++         _Regs()->CR &= ~(DAC_CR_EN1 << (_Channel * ChannelOffset));
+      }
+  
+      DAC_TEMPLATE_ARGS
+      void DAC_TEMPLATE_QUALIFIER::DisableBuffer()
+      {
++         _Regs()->CR |= (DAC_CR_EN1 << (_Channel * ChannelOffset));
+      }
+  
+      DAC_TEMPLATE_ARGS
