@@ -149,7 +149,7 @@ namespace Zhele::Private
         _ClockCtrl::Enable();
         SelectClockSource<clockSource>();
         SetDivider<divider>();
-        _Regs()->CR1  = 0;
+        _Regs()->CR  = 0;
         _Regs()->SQR1 = 0;
         _Regs()->SQR2 = 0;
         _Regs()->SQR3 = 0;
@@ -208,7 +208,7 @@ namespace Zhele::Private
     {
         if (channel == AdcCommon::TempSensorChannel)
         {
-            _Regs()->ADC12_CCR |= ADC_CCR_VSENSESEL;
+     //       _Regs()->ADC12_CCR |= ADC_CCR_VSENSESEL;
         }
         else
         {
@@ -393,7 +393,7 @@ namespace Zhele::Private
         uint16_t result = 0xffff;
         do
         {
-            status = _Regs()->SR;
+            status = _Regs()->ISR;
         } while (((status & (ADC_ISR_JEOC)) == 0) && --timeout);
 
         if ((status & (ADC_ISR_JEOC)) == 0)
@@ -413,7 +413,7 @@ namespace Zhele::Private
     ADC_TEMPLATE_ARGS
     bool ADC_TEMPLATE_QUALIFIER::InjectedReady()
     {
-        return (_Regs()->SR & (ADC_ISR_JEOC)) == (ADC_ISR_JEOC);
+        return (_Regs()->ISR & (ADC_ISR_JEOC)) == (ADC_ISR_JEOC);
     }
 
     ADC_TEMPLATE_ARGS
