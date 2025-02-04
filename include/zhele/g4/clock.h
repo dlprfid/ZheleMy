@@ -141,7 +141,7 @@ namespace Zhele::Clock
     template<unsigned divider>
     inline void PllClock::SetI2SOutputDivider()
     {
-        static_assert(2 <= divider && divider <= (PllP::MaxValue + 1), "Invalid divider value!");
+        static_assert(1 <= divider && divider <= (PllP::MaxValue + 1), "Invalid divider value!");
         RCC->PLLCFGR |= RCC_PLLCFGR_PLLPEN;
         PllP::Set(divider - 1);
     }
